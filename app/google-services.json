@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "927116195228",
+    "firebase_url": "https://finflow-94a8c-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "finflow-94a8c",
+    "storage_bucket": "finflow-94a8c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:927116195228:android:9e3c8dc1df94d15a128459",
+        "android_client_info": {
+          "package_name": "com.levels.finflow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "927116195228-bqtial43q8kbsoch50h7ivdq5eumcuh0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkeM2IWMdzeh4SuGEIKdt2X4IWvxG0mlY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "927116195228-2lgi9ettp79r2dv2f71kqmk988mecc8g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
