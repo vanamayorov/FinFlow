@@ -3,7 +3,7 @@
     <style name="Theme.MainFinFlow" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/toscaSecondary</item>
-        <item name="colorPrimaryVariant">#ff9f1c</item>
+        <item name="colorPrimaryVariant">#EC407A</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

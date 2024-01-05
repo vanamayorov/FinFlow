@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:orientation="vertical"
-        android:background="@drawable/bg_insert_expense"
+        android:background="@drawable/back_purple"
         >
 
         <Toolbar
@@ -212,7 +212,7 @@
                 android:layout_below="@+id/noteTIL"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="@color/orangePrimary"
+                android:backgroundTint="@color/pinkBack"
                 android:paddingHorizontal="30dp"
                 android:text="Зберегти"
                 android:textColor="@color/white"

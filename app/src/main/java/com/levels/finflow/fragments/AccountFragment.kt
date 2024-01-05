@@ -289,8 +289,8 @@ class AccountFragment : Fragment() {
 
         val barDataSet = BarDataSet(barEntries, "")
         barDataSet.setColors(
-            resources.getColor(R.color.orangeSecondary),
-            resources.getColor(R.color.orangePrimary)
+            resources.getColor(R.color.toscaSecondary),
+            resources.getColor(R.color.pinkBack)
         )
         barDataSet.valueTextColor = Color.BLACK
         barDataSet.valueTextSize = 15f
@@ -319,8 +319,8 @@ class AccountFragment : Fragment() {
         //setup pie chart colors
         val pieDataSet = PieDataSet(pieEntries,"")
         pieDataSet.setColors(
-            resources.getColor(R.color.orangeSecondary),
-            resources.getColor(R.color.orangePrimary)
+            resources.getColor(R.color.toscaSecondary),
+            resources.getColor(R.color.pinkBack)
         )
 
         pieChart.description.isEnabled = false

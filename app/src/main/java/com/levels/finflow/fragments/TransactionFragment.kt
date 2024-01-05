@@ -51,8 +51,10 @@ class TransactionFragment : Fragment() {
     private val user = Firebase.auth.currentUser
     private lateinit var typeOption: Spinner
     private lateinit var timeSpanOption: Spinner
-    private var selectedType: String = "Всі"//default is all type
-    private var selectedTimeSpan: String = "За весь час" //default is all time
+    private var selectedType: String = "Всі"
+    private var selectedTimeSpan: String = "За весь час"
+    private var selectedTypeUkr: String = "Всі"
+    private var selectedTimeSpanUkr: String = "За весь час"
     var dateStart: Long = 0
     var dateEnd: Long = 0
 
@@ -124,36 +126,49 @@ class TransactionFragment : Fragment() {
         val userName = user.displayName
 
 
-        val name = if (userName == null || userName == ""){
+        val name = if (userName == null || userName == "") {
             val splitValue = email?.split("@")
             splitValue?.get(0).toString()
-        }else{
+        } else {
             userName
         }
 
         tvUserName.text = "Привіт, ${name}!"
     }
 
-    private fun visibilityOptions (){
+    private fun visibilityOptions() {
         typeOption = requireView().findViewById(R.id.typeSpinner) as Spinner
         val typeList = arrayOf("Всі", "Витрати", "Дохід")
         //typeOption.adapter = ArrayAdapter<String>(this.requireActivity(),android.R.layout.simple_list_item_1,options)
-        val typeSpinnerAdapter = ArrayAdapter<String>(this.requireActivity(),R.layout.selected_spinner,typeList)
+        val typeSpinnerAdapter =
+            ArrayAdapter<String>(this.requireActivity(), R.layout.selected_spinner, typeList)
         typeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
         typeOption.adapter = typeSpinnerAdapter
 
         timeSpanOption = requireView().findViewById(R.id.timeSpanSpinner) as Spinner
         val timeSpanList = arrayOf("За весь час", "За місяць", "За тиждень", "Сьогодні")
-        val timeSpanAdapter = ArrayAdapter<String>(this.requireActivity(),R.layout.selected_spinner, timeSpanList)
+        val timeSpanAdapter =
+            ArrayAdapter<String>(this.requireActivity(), R.layout.selected_spinner, timeSpanList)
         timeSpanAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
         timeSpanOption.adapter = timeSpanAdapter
 
-        typeOption.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        typeOption.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                when(typeList[p2]){
-                    "Всі" -> selectedType = "All Type"
-                    "Витрати" -> selectedType = "Expense"
-                    "Дохід" -> selectedType = "Income"
+                when (typeList[p2]) {
+                    "Всі" -> {
+                        selectedType = "All Type"
+                        selectedTypeUkr = "транзакцій"
+                    }
+
+                    "Витрати" -> {
+                        selectedType = "Expense"
+                        selectedTypeUkr = "витрат"
+                    }
+
+                    "Дохід" -> {
+                        selectedType = "Income"
+                        selectedTypeUkr = "доходів"
+                    }
                 }
                 getTransactionData()
             }
@@ -163,29 +178,40 @@ class TransactionFragment : Fragment() {
             }
         }
 
-        timeSpanOption.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        timeSpanOption.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                when(timeSpanList[p2]){
-                    "За весь час" -> selectedTimeSpan = "All Time"
+                when (timeSpanList[p2]) {
+                    "За весь час" -> {
+                        selectedTimeSpan = "All Time"
+                        selectedTimeSpanUkr = "весь час"
+                    }
+
                     "За місяць" -> {
                         selectedTimeSpan = "This Month"
                         getRangeDate(Calendar.DAY_OF_MONTH)
+                        selectedTimeSpanUkr = "цей місяць"
                     }
+
                     "За тиждень" -> {
                         selectedTimeSpan = "This Week"
                         getRangeDate(Calendar.DAY_OF_WEEK)
+                        selectedTimeSpanUkr = "цей тиждень"
                     }
+
                     "Сьогодні" -> {
                         selectedTimeSpan = "Today"
                         dateStart = System.currentTimeMillis()
                         dateEnd = System.currentTimeMillis()
+                        selectedTimeSpanUkr = "сьогодні"
                     }
                 }
                 getTransactionData()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
+                /*when(timeSpanList[p0]){
+                    "Нічого не обрано" -> selectedTimeSpan = "Нічого не обрано"
+                }*/
             }
         }
     }
@@ -203,7 +229,7 @@ class TransactionFragment : Fragment() {
         val endDay = cal.getActualMaximum(rangeType) //get the last date of the month
         cal.set(rangeType, endDay)
         val endDate = cal.time
-        dateEnd= endDate.time //convert to millis
+        dateEnd = endDate.time //convert to millis
     }
 
     private fun getTransactionData() {
@@ -220,48 +246,56 @@ class TransactionFragment : Fragment() {
             dbRef = FirebaseDatabase.getInstance().getReference(uid)
         }
         val query: Query = dbRef.orderByChild("invertedDate") //sorting date descending
-        query.addValueEventListener(object : ValueEventListener{
+        query.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 transactionList.clear()
-                if (snapshot.exists()){
+                if (snapshot.exists()) {
                     when (selectedType) {
-                        "All Type" -> { //all option selected
-                            for (transactionSnap in snapshot.children){
-                                val transactionData = transactionSnap.getValue(TransactionModel::class.java) //reference data class
-                                if (selectedTimeSpan == "All Time"){
+                        "All Type" -> {
+                            for (transactionSnap in snapshot.children) {
+                                val transactionData =
+                                    transactionSnap.getValue(TransactionModel::class.java) //reference data class
+                                if (selectedTimeSpan == "All Time") {
                                     transactionList.add(transactionData!!)
-                                }else{
-                                    if (transactionData!!.date!! > dateStart-86400000 &&
-                                        transactionData.date!!<= dateEnd){
+                                } else {
+                                    if (transactionData!!.date!! > dateStart - 86400000 &&
+                                        transactionData.date!! <= dateEnd
+                                    ) {
                                         transactionList.add(transactionData)
                                     }
                                 }
                             }
                         }
-                        "Expense" -> { //expense option selected
-                            for (transactionSnap in snapshot.children){
-                                val transactionData = transactionSnap.getValue(TransactionModel::class.java) //reference data class
-                                if (transactionData!!.type == 1){ //expense type
-                                    if (selectedTimeSpan == "All Time"){
+
+                        "Expense" -> {
+                            for (transactionSnap in snapshot.children) {
+                                val transactionData =
+                                    transactionSnap.getValue(TransactionModel::class.java) //reference data class
+                                if (transactionData!!.type == 1) { //expense type
+                                    if (selectedTimeSpan == "All Time") {
                                         transactionList.add(transactionData)
-                                    }else{
-                                        if (transactionData.date!! > dateStart-86400000 &&
-                                            transactionData.date!! <= dateEnd){
+                                    } else {
+                                        if (transactionData.date!! > dateStart - 86400000 &&
+                                            transactionData.date!! <= dateEnd
+                                        ) {
                                             transactionList.add(transactionData)
                                         }
                                     }
                                 }
                             }
                         }
+
                         "Income" -> {
-                            for (transactionSnap in snapshot.children){
-                                val transactionData = transactionSnap.getValue(TransactionModel::class.java) //reference data class
-                                if (transactionData!!.type == 2){ //income type
-                                    if (selectedTimeSpan == "All Time"){
+                            for (transactionSnap in snapshot.children) {
+                                val transactionData =
+                                    transactionSnap.getValue(TransactionModel::class.java) //reference data class
+                                if (transactionData!!.type == 2) { //income type
+                                    if (selectedTimeSpan == "All Time") {
                                         transactionList.add(transactionData)
-                                    }else{
-                                        if (transactionData.date!! > dateStart-86400000 &&
-                                            transactionData.date!! <= dateEnd){
+                                    } else {
+                                        if (transactionData.date!! > dateStart - 86400000 &&
+                                            transactionData.date!! <= dateEnd
+                                        ) {
                                             transactionList.add(transactionData)
                                         }
                                     }
@@ -270,21 +304,28 @@ class TransactionFragment : Fragment() {
                         }
                     }
 
-                    if (transactionList.isEmpty()){ //if there is no data being displayed
+                    if (transactionList.isEmpty()) { //if there is no data being displayed
                         noDataImage.visibility = View.VISIBLE
                         tvNoDataTitle.visibility = View.VISIBLE
                         tvVisibilityNoData.visibility = View.VISIBLE
-                        tvVisibilityNoData.text = "There is no $selectedType data $selectedTimeSpan"
-                    }else{
+                        tvVisibilityNoData.text = "Не було $selectedTypeUkr за $selectedTimeSpanUkr"
+                    } else {
                         val mAdapter = TransactionAdapter(transactionList)
                         transactionRecyclerView.adapter = mAdapter
 
-                        mAdapter.setOnItemClickListener(object: TransactionAdapter.onItemClickListener{ //item click listener and pass extra data
+                        mAdapter.setOnItemClickListener(object :
+                            TransactionAdapter.onItemClickListener { //item click listener and pass extra data
                             override fun onItemClick(position: Int) {
-                                val intent = Intent(this@TransactionFragment.activity, TransactionDetails::class.java)
+                                val intent = Intent(
+                                    this@TransactionFragment.activity,
+                                    TransactionDetails::class.java
+                                )
 
                                 //put extras
-                                intent.putExtra("transactionID", transactionList[position].transactionID)
+                                intent.putExtra(
+                                    "transactionID",
+                                    transactionList[position].transactionID
+                                )
                                 intent.putExtra("type", transactionList[position].type)
                                 intent.putExtra("title", transactionList[position].title)
                                 intent.putExtra("category", transactionList[position].category)
@@ -298,7 +339,7 @@ class TransactionFragment : Fragment() {
                     }
                     shimmerLoading.stopShimmerAnimation()
                     shimmerLoading.visibility = View.GONE
-                }else{ //if there is no data in database
+                } else { //if there is no data in database
                     shimmerLoading.stopShimmerAnimation()
                     shimmerLoading.visibility = View.GONE
 
