@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.levels.finflow.TransactionDetails"
-    android:background="@color/orangePrimary">
+    android:background="@color/pinkBack">
 
 
     <RelativeLayout
         android:id="@+id/transactionDetailsTitle"
         android:layout_width="match_parent"
         android:layout_height="270dp"
-        android:background="@drawable/bg_details_expense">
+        >
 
         <Toolbar
             android:id="@+id/toolbar"
@@ -53,10 +53,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/toolbar"
-            android:layout_marginStart="20dp"
+
             android:layout_marginTop="10dp"
             android:fontFamily="@font/poppinsmedium"
             android:text="Деталі транзакції"
+            android:gravity="center"
             android:textColor="@color/white"
             android:textSize="28sp"
             android:textStyle="bold" />

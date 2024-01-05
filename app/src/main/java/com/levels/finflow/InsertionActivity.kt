@@ -1,5 +1,6 @@
 package com.levels.finflow
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -108,17 +109,18 @@ class InsertionActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun setBackgroundColor() {
         if (type == 1){
             rbExpense.setBackgroundResource(R.drawable.radio_selected_expense)
             rbIncome.setBackgroundResource(R.drawable.radio_not_selected)
-            toolbarLinear.setBackgroundResource(R.drawable.bg_insert_expense)
-            btnSaveData.backgroundTintList = getColorStateList(R.color.orangePrimary)
-            window.statusBarColor = ContextCompat.getColor(this, R.color.orangePrimary)
+            toolbarLinear.setBackgroundResource(R.drawable.back_purple)
+            btnSaveData.backgroundTintList = getColorStateList(R.color.pinkBack)
+            window.statusBarColor = ContextCompat.getColor(this, R.color.pinkBack)
         }else{
             rbIncome.setBackgroundResource(R.drawable.radio_selected_income)
             rbExpense.setBackgroundResource(R.drawable.radio_not_selected)
-            toolbarLinear.setBackgroundResource(R.drawable.bg_insert_income)
+            toolbarLinear.setBackgroundResource(R.drawable.back_turquoise)
             btnSaveData.backgroundTintList = getColorStateList(R.color.toscaSecondary)
             window.statusBarColor = ContextCompat.getColor(this, R.color.toscaSecondary)
         }

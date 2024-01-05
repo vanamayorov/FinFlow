@@ -6,8 +6,8 @@
         android:id="@+id/ic_transaction"
         android:icon="@drawable/ic_baseline_account_balance_wallet_24"
         android:title="Список"
-        app:cnb_backgroundColor="#40FF9F1C"
-        app:cnb_iconColor="@color/orangePrimary" />
+        app:cnb_backgroundColor="@color/pinkSecondary"
+        app:cnb_iconColor="@color/pinkBack" />
 
     <item
         android:id="@+id/blank"

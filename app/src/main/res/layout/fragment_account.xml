@@ -24,7 +24,7 @@
                     android:id="@+id/upperLayout"
                     android:layout_width="match_parent"
                     android:layout_height="168dp"
-                    android:background="@color/orangePrimary">
+                    android:background="@color/pinkBack">
 
                     <Toolbar
                         android:id="@+id/toolbar"
@@ -61,7 +61,7 @@
                             android:gravity="center"
                             android:paddingTop="7dp"
                             android:text="F"
-                            android:textColor="@color/orangePrimary"
+                            android:textColor="@color/pinkBack"
                             android:textSize="40sp" />
 
                         <RelativeLayout
@@ -255,7 +255,7 @@
                                     android:layout_weight="1"
                                     android:fontFamily="@font/poppinsmedium"
                                     android:text="0.00"
-                                    android:textColor="@color/orangePrimary"
+                                    android:textColor="@color/pinkBack"
                                     android:textSize="18sp" />
 
                                 <TextView

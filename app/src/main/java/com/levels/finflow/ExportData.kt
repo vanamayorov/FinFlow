@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.util.Pair
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
@@ -79,6 +80,7 @@ class ExportData : AppCompatActivity() {
             }
 
         }
+        window.statusBarColor = ContextCompat.getColor(this, R.color.toscaSecondary)
     }
 
     private fun exportDataIntoWorkbook() {

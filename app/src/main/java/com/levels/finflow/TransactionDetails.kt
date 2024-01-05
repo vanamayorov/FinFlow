@@ -98,18 +98,18 @@ class TransactionDetails : AppCompatActivity() {
         tvAmountDetails.text = amount.toString()
 
         if (type == 1) {
-            tvTypeDetails.text = "Expense Transaction"
-            tvAmountDetails.setTextColor(Color.parseColor("#ff9f1c"))
-            detailsTitle.setBackgroundResource(R.drawable.bg_details_expense)
+            tvTypeDetails.text = "Витрати"
+            tvAmountDetails.setTextColor(Color.parseColor("#EC407A"))
+            detailsTitle.setBackgroundResource(R.drawable.back_purple)
         } else {
-            tvTypeDetails.text = "Income Transaction"
+            tvTypeDetails.text = "Прибутки"
             tvAmountDetails.setTextColor(Color.parseColor("#2ec4b6"))
-            detailsTitle.setBackgroundResource(R.drawable.bg_details_income)
+            detailsTitle.setBackgroundResource(R.drawable.back_turquoise)
             window.statusBarColor = ContextCompat.getColor(this, R.color.toscaSecondary)
         }
 
         val date: Long = intent.getLongExtra("date", 0)
-        val simpleDateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH)
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
         val result = Date(date)
         tvDateDetails.text = simpleDateFormat.format(result)
 

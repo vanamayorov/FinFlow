@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -50,6 +51,7 @@ class Login : AppCompatActivity() {
             googleSignInClient.signOut() //signin options dialog will always show when button get click
             signIn()
         }
+        window.statusBarColor = ContextCompat.getColor(this, R.color.toscaSecondary)
 
     }
 

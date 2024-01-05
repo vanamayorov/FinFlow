@@ -20,15 +20,6 @@
         android:orientation="horizontal"
         android:background="@color/white">
 
-        <ImageView
-            android:id="@+id/typeIcon"
-            android:layout_width="47dp"
-            android:layout_height="47dp"
-            android:layout_marginEnd="13dp"
-            android:layout_marginStart="3dp"
-            android:background="@drawable/ic_money_grey"
-            />
-
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

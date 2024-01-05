@@ -36,7 +36,7 @@ class TransactionAdapter (private val transactionList: ArrayList<TransactionMode
         holder.tvTransactionTitle.text = currentTransaction.title // get the current title
 
         if (currentTransaction.type == 1){
-            holder.tvTransactionAmount.setTextColor(Color.parseColor("#ff9f1c"))
+            holder.tvTransactionAmount.setTextColor(Color.parseColor("#EC407A"))
         }else{
             holder.tvTransactionAmount.setTextColor(Color.parseColor("#2ec4b6"))
         }
@@ -64,7 +64,7 @@ class TransactionAdapter (private val transactionList: ArrayList<TransactionMode
         val tvTransactionAmount: TextView = itemView.findViewById(R.id.tvAmount)
         val tvCategory: TextView = itemView.findViewById(R.id.tvCategory)
         val tvDate: TextView = itemView.findViewById(R.id.tvDate)
-        val typeIcon: ImageView = itemView.findViewById(R.id.typeIcon)
+//        val typeIcon: ImageView = itemView.findViewById(R.id.typeIcon)
 
         init {
             itemView.setOnClickListener {

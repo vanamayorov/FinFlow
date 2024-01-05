@@ -9,9 +9,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="orangePrimary">#ff9f1c</color>
     <color name="toscaSecondary">#2ec4b6</color>
-    <color name="orangeSecondary">#ffbf69</color>
+    <color name="pinkSecondary">#FCE4EC</color>
     <color name="toscaWhite">#cbf3f0</color>
     <color name="greenIncome">#489E4C</color>
     <color name="redExpense">#D11818</color>
     <color name="toscaDarker">#03A5A3</color>
+    <color name="pinkBack">#EC407A</color>
 </resources>
