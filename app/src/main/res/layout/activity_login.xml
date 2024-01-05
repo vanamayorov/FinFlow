@@ -76,7 +76,7 @@
                     android:paddingVertical="18dp"
                     android:textColor="@color/black"
                     android:textColorHint="#787878"
-                    app:backgroundTint=" #2eb086" />
+                    app:backgroundTint="#2eb086" />
 
             </LinearLayout>
 
@@ -144,40 +144,10 @@
                 app:backgroundTint="#2EB086"
                 app:cornerRadius="13dp" />
 
-            <TextView
-                android:id="@+id/orTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/loginBtn"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="15dp"
-                android:text="Або"
-                android:textColor="#A1A1A1" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/googleSignInBtn"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_below="@id/orTv"
-                android:layout_centerHorizontal="true"
-                android:layout_marginHorizontal="36dp"
-                android:backgroundTint="#08000000"
-                android:paddingTop="5dp"
-                android:stateListAnimator="@null"
-                android:text="Увійти через Google"
-                android:textAllCaps="false"
-                android:textColor="#606060"
-                android:textSize="15sp"
-                app:cornerRadius="13dp"
-                app:icon="@drawable/googleg_standard_color_18"
-                app:iconPadding="10dp"
-                app:iconTint="#00100D0D"
-                app:iconTintMode="src_atop" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/googleSignInBtn"
+                android:layout_below="@id/loginBtn"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
                 android:gravity="center"

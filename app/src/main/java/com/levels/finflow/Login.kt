@@ -47,17 +47,8 @@ class Login : AppCompatActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        binding.googleSignInBtn.setOnClickListener {
-            googleSignInClient.signOut() //signin options dialog will always show when button get click
-            signIn()
-        }
         window.statusBarColor = ContextCompat.getColor(this, R.color.toscaSecondary)
 
-    }
-
-    private fun signIn() {
-        val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
